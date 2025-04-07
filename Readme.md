@@ -54,6 +54,7 @@ php-fuzzer fuzz /root/pdfparser/tests/fuzz/fuzz_target.php /root/pdfparser/sampl
 cd /root/crashes
 php-fuzzer minimize-crash /root/pdfparser/tests/fuzz/fuzz_target.php  /root/crashes/crash-HASH.txt
 php-fuzzer run-single /root/pdfparser/tests/fuzz/fuzz_target.php minimized-HASH.txt  
+```
 
 Копируем результат фаззинга на хост
 
@@ -76,9 +77,9 @@ mkdir coverage
 cd /root
 php-fuzzer report-coverage pdfparser/tests/fuzz/fuzz_target.php pdfparser/samples/ coverage/
 ```
+
 Копируем результат покрытия на хост
 
 ```
 cp -r /root/coverage /root/assets
 ```
-
