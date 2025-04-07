@@ -1,0 +1,29 @@
+diff --git a/tests/fuzz/fuzz_target.php b/tests/fuzz/fuzz_target.php
+new file mode 100644
+index 0000000..b52bbf2
+--- /dev/null
++++ b/tests/fuzz/fuzz_target.php
+@@ -0,0 +1,23 @@
++<?php declare(strict_types=1);
++
++ini_set('memory_limit', '-1');
++require __DIR__.'/../../vendor/autoload.php';
++
++define('MAX_INPUT_SIZE', 10 * 1024 * 1024);
++
++$parser = new \Smalot\PdfParser\Parser();
++
++$config->setTarget(function (string $input) use ($parser) {
++    if (strlen($input) > MAX_INPUT_SIZE || strpos($input, '%PDF-') !== 0) {
++        return;
++    }
++
++    try {
++        $pdf = $parser->parseContent($input);
++    }
++    catch (\Exception $e) {
++        //error_log('PDF parsing failed: ' . $e->getMessage());
++    }
++});
++
++$config->setMaxLen(2048);
