@@ -99,7 +99,7 @@ docker compose up -d web --build --force-recreate
 
 ```sh
 docker compose up db --force-recreate
-docker compose up web --build --force-recreate
+docker compose up web --force-recreate
 ```
 После этого приложение должно быть доступно между контейнерами по порту 80 (http://web/), а также извне контейнеров по адресу http://localhost:8080, который сопоставлен с портом 80 веб-контейнера.
 
